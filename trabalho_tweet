@@ -1,0 +1,167 @@
+TesteTwitter Java
+
+package Trabalho_twitter;
+
+import java.util.Scanner;
+
+public class TestTweet {
+
+    public static void main(String[] args) {
+        
+        Scanner ler = new Scanner(System.in);
+        System.out.println("Login:");
+        String usu= ler.nextLine();
+        System.out.println("Senha:");
+        String pass = ler.nextLine();
+        
+        Usuario user = new Usuario(usu, pass);
+        
+        int confere = 1;
+
+        while (confere == 1) 
+        {
+            System.out.println("Entre com seu tweet:");
+            String tweet = ler.nextLine();
+            user.tweetar(tweet);
+
+            System.out.println("deseja continuar tweetando?");
+            
+            if (!ler.nextLine().equalsIgnoreCase("sim")) 
+            {
+                confere = 0;
+            }
+
+        }
+
+        user.listar_tweets();
+        
+        ler.close();    
+                
+}
+}
+
+
+
+
+
+TWEET 
+
+package Trabalho_twitter;
+
+public class Tweet {
+    
+    
+    private String descricao;
+
+    
+    public Tweet(String mensagem) 
+    {
+        if (mensagem.length() >= 140) 
+        {
+            mensagem = mensagem.substring(0, 140);
+        }
+        else 
+        {
+            this.descricao = mensagem;
+        }
+    }
+
+public String getTweet() 
+{
+    return this.descricao;
+}
+public void setTweet(String mensagem) 
+{
+    this.descricao = mensagem;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USUARIO
+
+package Trabalho_twitter;
+
+import java.util.ArrayList;
+
+public class Usuario {
+    
+    
+    private String login;
+    private String senha;
+
+private ArrayList<Tweet> tweets;
+
+
+
+public Usuario(String login, String senha) 
+{
+    this.tweets = new ArrayList<>();
+    this.setLogin(login);
+    this.setSenha(senha);
+    if (!this.verificaSenha()) { 
+        System.out.println("Senha incorreta");
+        System.exit(0);
+    }
+}
+
+private boolean verificaSenha() 
+{
+    if (this.getSenha().equals("poo"))
+    {
+        return true;
+    } 
+    else 
+    {
+        return false;
+    }
+}
+
+public void tweetar(String mensagem) 
+{
+    Tweet tweet = new Tweet(mensagem);
+    this.tweets.add(tweet);
+}
+
+public void listar_tweets() 
+{
+    System.out.printf("\nLogin: %s\n", this.getLogin());
+
+    for (int i = 0; i < this.tweets.size(); i++) 
+    {
+        Tweet tweet = this.tweets.get(i);
+        System.out.printf("Tweet %s:" , i+1 );
+        System.out.println(tweet.getTweet());
+    }
+}
+
+private String getLogin() 
+{
+    return this.login;
+}
+
+private String getSenha() {
+    return this.senha;
+}
+
+private void setLogin(String login) {
+    this.login = login;
+}
+
+private void setSenha(String senha) {
+    this.senha = senha;
+}
+}
