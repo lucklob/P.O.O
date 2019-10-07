@@ -1,0 +1,40 @@
+package trabalho_semana8;
+
+public class AnimalTester {
+
+	public static void main(String[] args) 
+	{
+		System.out.println("MAMIFERO");
+		Mamifero m = new Mamifero();
+		
+		m.alimentar();
+		m.locomover();
+		m.emitirSom();
+		System.out.println("-------------------------------");
+		
+		System.out.println("REPTIL");
+		Reptil r = new Reptil();
+		
+		r.alimentar();
+		r.locomover();
+		r.emitirSom();
+		System.out.println("-------------------------------");
+		
+		System.out.println("PEIXE");
+		Peixe p = new Peixe();
+		p.alimentar();
+		p.locomover();
+		p.emitirSom();
+		p.soltarBolhas();
+		System.out.println("-------------------------------");
+		
+		System.out.println("AVE");
+		Ave a = new Ave();
+        a.alimentar();
+		a.locomover();
+        a.emitirSom();
+        a.fazerNinho();
+        System.out.println("-------------------------------");
+	}
+
+}
